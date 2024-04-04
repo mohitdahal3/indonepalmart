@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %} Product View {% endblock title %}
+
+{% load static %}
+{% block css %}
+
+    <link rel="stylesheet" href=" {% static 'shop/css/productview-style.css' %} ">
+
+{% endblock css %}
+
+
+{% block body %}
+
+    <div class="bg-body-tertiary py-5 view-product-main">
+        <div class="container">
+            <h1 class="display-5 fw-medium mb-4">{{product.product_name}}</h1>
+            <div class="images px-3">
+
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="/media/{{product.product_image}}" class="d-block w-100">
+                        </div>
+
+                        {% if product.product_image_2 %}
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <img src="/media/{{product.product_image_2}}" class="d-block w-100">
+                            </div>
+                        {% endif %}
+                        
+                        {% if product.product_image_3 %}
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <img src="/media/{{product.product_image_4}}" class="d-block w-100">
+                            </div>
+                        {% endif %}
+                        
+                        {% if product.product_image_4 %}
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <img src="/media/{{product.product_image_4}}" class="d-block w-100">
+                            </div>
+                        {% endif %}
+                        
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+
+            </div>
+
+
+            <div class="px-3 text-align-left-all py-2 mt-3">
+                <p class="fs-3 fw-medium mb-3">Category: {{product.category}}</p>
+                <p class="fs-4 mb-3">{{product.product_description}}</p>
+                <p class="fs-3 mb-2"> 
+                    <span class="badge text-bg-light">Available: {{product.stock}}</span>
+                    <span class="badge text-bg-light">Price: Rs.{{product.price}}</span>
+                </p>
+                {% if product.stock > 0 %}
+                    <a href="/order-from-inventory/{{product.sno}}" type="button" class="btn btn-outline-success">Order Now!</a>
+                {% endif %}
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+{% endblock body %}

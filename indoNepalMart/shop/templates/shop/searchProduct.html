@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %} Search Product {% endblock title %}
+
+{% load static %}
+{% block css %}
+
+    <link rel="stylesheet" href=" {% static 'shop/css/product-style.css' %} ">
+
+{% endblock css %}
+
+
+{% block body %}
+<div class="product-main bg-body-tertiary">
+    <div class="container py-5 px-2">
+        <h3 class="tll">Showing results for "{{query}}"</h3>
+        <div class="products-list px-3">
+
+            {% for product in products reversed %}
+                <div class="product" id="{{product.sno}}">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="/media/{{product.product_image}}">
+                        </div>
+                        <div class="col-md-8 tll">
+                            <h1 class="display-6 fw-medium tll mb-0 mt-2">{{product.product_name}}</h1>
+                            <p class="fs-4 fw-normal tll">(Category: {{product.category}})</p>
+                            <p class="tll fs-5">
+
+                                {% if product.product_description|length > 50 %}
+                                    {{ product.product_description|slice:":50" }}...
+                                {% else %}
+                                    {{ product.product_description }}
+                                {% endif %}
+
+                            </p>
+                            <p class="tll fs-4"> 
+                                <span class="badge text-bg-light">Available: {{product.stock}}</span>
+                                <span class="badge text-bg-light">Price: Rs.{{product.price}}</span>
+                            </p>
+                            <a href="/productview/{{product.sno}}" type="button" class="btn btn-success mx-2">Learn More</a>
+                            <a href="/order-from-inventory/{{product.sno}}" type="button" class="btn btn-outline-success mx-2">Order Now!</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+
+            <div class="alert alert-danger fs-4 mt-4" style="margin-bottom:5em;" role="alert">
+                No matching results! Try to change your query.    
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

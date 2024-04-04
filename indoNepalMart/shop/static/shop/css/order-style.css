@@ -1,0 +1,34 @@
+
+.form-control{
+    text-align: left !important;
+    font-size: 1.3em;
+}
+
+.form-control:focus{
+    box-shadow: none;
+}
+
+.input-group > label{
+    font-size: 1.3em;
+}
+
+
+.order-btn{
+    font-size: 1.3em;
+}
+
+.order-wrapper{
+    border: 1px solid rgba(105, 105, 105, 0.91);
+    border-radius: 1em;
+    box-shadow: 0 0 6px -1px gray;
+}
+
+@media (max-width: 1000px) {
+    .form-control{
+        font-size: 1em;
+    }
+
+    .input-group > label{
+        font-size: 1em;
+    }
+}

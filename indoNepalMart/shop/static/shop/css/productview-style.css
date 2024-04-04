@@ -1,0 +1,22 @@
+
+
+.text-align-left-all , .text-align-left-all > *{
+    text-align: left;
+}
+
+
+.carousel-inner{
+    width: 75%;
+    margin: auto;
+
+}
+
+
+.carousel-control-prev-icon , .carousel-control-next-icon{
+    background-color: black;
+    border-radius: 0.2em;
+}
+
+.carousel-item > img{
+    border-radius: 0.5em;
+}

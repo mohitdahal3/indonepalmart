@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+
+{% block homeActive %}class="active-page-link"{% endblock homeActive %}
+
+
+
+{% block title %} Home {% endblock title %}
+{% load static %}
+{% block css %}
+
+    <link rel="stylesheet" href=" {% static 'shop/css/home-style.css' %} ">
+
+
+{% endblock css %}
+
+{% block body %}
+
+    <div class="hero">
+
+        <img class="front-logo" src=" {% static 'shop/images/logo.png' %} " alt="Logo">
+        <p class="catchy-line">IndoNepal Mart - Shop Beyond Borders!</p>
+        
+        <p class="tertiary-heading">
+            Welcome to Indo-Nepal Mart! We're here to make your online shopping experience hassle-free. Explore amazing deals from Indian online stores, enjoy affordable prices, and have your favorite products delivered right to your doorstep in Nepal. With us, cross-border shopping has never been simpler!
+        </p>
+
+        <div class="action-buttons mt-3 px-4">
+            <a type="button" target="_blank" href="https://www.amazon.com" class="btn btn-lg btn-outline-dark my-1">Browse on Amazon!</a>
+            <a type="button" href="/order" class="btn btn-lg btn-outline-dark my-1">Place your Order!</a>
+            <a type="button" href="#how-it-works-section" class="btn btn-lg btn-dark my-1">How it works?</a>
+        </div>
+
+    </div>
+
+
+    <div class="bg-body-tertiary rounded-3">
+        <section id="about-us-section">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-semibold">About Us</h1>
+                <p style="margin:auto;" class="col-md-8 fs-4 px-2">Welcome to Indo-Nepal Mart, your trusted bridge between affordable shopping and convenience! Founded with the mission to make cross-border shopping effortless for Nepali citizens, Indo-Nepal Mart brings you the best deals from Indian online stores right to your doorstep. Our team is dedicated to providing you with a seamless shopping experience, ensuring access to a wide range of products at competitive prices. With a commitment to transparency, reliability, and customer satisfaction, we strive to exceed your expectations with every interaction.</p>
+            </div>
+
+            <div class="container our-team-section mt-5">
+                <h1 class="display-5 fw-semibold pb-2">Our Team</h1>
+                <p class="fs-5 px-2 mb-5">Meet the dedicated individuals behind Indo-Nepal Mart, committed to providing you with an exceptional shopping experience.</p>
+
+                <div class="profile row py-3 px-2">
+                    <div class="col-lg-4 profile-image-column">
+                        <img class="team-profile-image" src=" {% static 'shop/images/profile1.jpg' %} " alt="Nehal Rauniyar">
+                    </div>
+                    <div class="col-lg-8 profile-info-column">
+                        <h1 class="display-6 fw-medium mt" >Nehal Rauniyar</h1>
+                        <h3 class="fs-4 mb-3">Founder & CEO</h3>
+                        <p class="fs-4 px-2">As the Founder and CEO of Indo-Nepal Mart, Nehal Rauniyar brings visionary leadership and entrepreneurial spirit to the team. With a passion for innovation and a keen understanding of market dynamics, Nehal is dedicated to revolutionizing cross-border commerce between Nepal and India. With a background in business development and a knack for strategic planning, Nehal oversees the company's growth strategy, partnerships, and overall operations. Committed to delivering unparalleled value to customers, Nehal strives to make online shopping more accessible, affordable, and convenient for Nepali consumers.</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="profile row">
+                    <div class="col-lg-8 profile-info-column order-2 order-lg-1">
+                        <h1 class="display-6 fw-medium" >Mohit Dahal</h1>
+                        <h3 class="fs-4 mb-3">Website Manager</h3>
+                        <p class="fs-4 px-2">I'm Mohit Dahal, the Website Manager at Indo-Nepal Mart. With a passion for technology and a knack for problem-solving, I take pride in ensuring that our online platform provides a seamless and enjoyable shopping experience for our customers. From designing user-friendly interfaces to optimizing website performance, I'm committed to creating a platform that is intuitive, visually appealing, and accessible to all users. With a background in web development and digital marketing, I leverage my skills to implement innovative features and strategies that enhance our online presence and drive customer engagement. I'm dedicated to staying up-to-date with the latest trends and technologies, constantly seeking ways to improve and innovate. At Indo-Nepal Mart, my goal is to make online shopping convenient, affordable, and enjoyable for everyone.</p>
+                    </div>
+                    <div class="col-lg-4 profile-image-column order-1 order-lg-2">
+                        <img class="team-profile-image" src=" {% static 'shop/images/profile3.jpg' %} " alt="Mohit Dahal">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="container divider mt-5">
+            <hr>
+        </div>
+
+        <section id="how-it-works-section">
+            <div class="container py-5">
+                <h2 class="how-it-works-heading">How it works?</h2>
+                
+
+                <ol class="steps-list" style="--length: 5" role="list">
+                    <li style="--i: 1">
+                        <h3 class="step-heading">Browse on Amazon</h3>
+                        <p class="step-paragraph">Start your shopping journey by browsing through the extensive selection of products available on Amazon's website.</p>
+                    </li>
+                    <li style="--i: 2">
+                        <h3 class="step-heading">Place Your Order</h3>
+                        <p class="step-paragraph">Once you've found the perfect item, simply click "Place your Order" back in our website to proceed. Fill out the provided form with your name, email, phone number, address, product's pictures and the product's link.</p>
+                    </li>
+                    <li style="--i: 3">
+                        <h3 class="step-heading">Connect with Us</h3>
+                        <p class="step-paragraph">After submitting the form, you'll be redirected to our WhatsApp to directly message our team. Here, you can discuss your product selection, preferences, and any additional details.</p>
+                    </li>
+                    <li style="--i: 4">
+                        <h3 class="step-heading">Confirm Your Order</h3>
+                        <p class="step-paragraph">If you haven't messaged us on WhatsApp, don't worry! We'll reach out to you using the contact information provided in the form. Our goal is to ensure seamless communication and address any questions or concerns you may have.</p>
+                    </li>
+                    <li style="--i: 5">
+                        <h3 class="step-heading">Enjoy Hassle-free Delivery</h3>
+                        <p class="step-paragraph">Sit back and relax as we handle the rest! We'll work tirelessly to minimize costs and ensure prompt delivery of your chosen products to your doorstep. Whether through trusted shipping partners or our own delivery network, your satisfaction is our priority.</p>
+                    </li>
+                </ol>
+
+
+            </div>
+        </section>
+
+    </div>
+    
+
+{% endblock body %}

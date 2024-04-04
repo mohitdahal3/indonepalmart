@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block productActive %}class="active-page-link"{% endblock productActive %}
+
+{% load static %}
+{% block css %}
+
+    <link rel="stylesheet" href=" {% static 'shop/css/product-style.css' %} ">
+
+{% endblock css %}
+
+{% block title %} Products {% endblock title %}
+
+{% block body %}
+
+    <div class="product-main bg-body-tertiary">
+        <div class="container py-5 px-2">
+            <h1 class="display-5 fw-bold mb-3">Browse Products in our Inventory</h1>
+            <p class="fs-5">Welcome to our inventory! Explore our products that are currently in stock and ready for delivery. Find what you need with ease. Check back regularly as our inventory is constantly updated with new arrivals.</p>
+            <div class="search-form-wrapper my-4 py-2 px-2">
+                <form action="/search-product" method="get" class="search-form">
+                    <input {% if not inventory_populated %}disabled{% endif %} class="form-control tll searchbar" type="text" name="query" placeholder="Search">
+                </form>
+            </div>
+            <div class="products-list px-3">
+
+                {% for product in products reversed %}
+                    {% if product.stock > 0 %}
+                        <div class="product" id="{{product.sno}}">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="/media/{{product.product_image}}">
+                                </div>
+                                <div class="col-md-8 tll">
+                                    <h1 class="display-6 fw-medium tll mb-0 mt-2">{{product.product_name}}</h1>
+                                    <p class="fs-4 fw-normal tll">(Category: {{product.category}})</p>
+                                    <p class="tll fs-5">
+
+                                        {% if product.product_description|length > 50 %}
+                                            {{ product.product_description|slice:":50" }}...
+                                        {% else %}
+                                            {{ product.product_description }}
+                                        {% endif %}
+
+                                    </p>
+                                    <p class="tll fs-4"> 
+                                        <span class="badge text-bg-light">Available: {{product.stock}}</span>
+                                        <span class="badge text-bg-light">Price: Rs.{{product.price}}</span>
+                                    </p>
+                                    <a href="/productview/{{product.sno}}" type="button" class="btn btn-success mx-2">Learn More</a>
+                                    <a href="/order-from-inventory/{{product.sno}}" type="button" class="btn btn-outline-success mx-2">Order Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+                
+                {% if not inventory_populated %}
+                    <div class="alert alert-danger fs-4" role="alert">
+                        We'd like to inform you that our inventory is currently empty. We're working to restock our products and offer you a wide variety of items to choose from. Please check back later for updates, and thank you for your patience and understanding.
+                    </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock body %}

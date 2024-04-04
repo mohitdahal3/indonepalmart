@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block contactActive %}class="active-page-link"{% endblock contactActive %}
+
+{% block title %} Contact {% endblock title %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href=" {% static 'shop/css/contact-style.css' %} ">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock css %}
+
+{% block body %}
+    <div class="contact-page bg-body-tertiary">
+
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="heading text-center">
+                    <h2 class="display-4 fw-bold">Contact
+                        <span> Us </span></h2>
+                    <p class="fs-4">Got questions or feedback? We're all ears! Reach out to us for assistance, suggestions, or just to say hi. Your satisfaction is our priority!</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="title">
+                            <h3>Contact details</h3>
+                            <p>For any questions or assistance, feel free to reach out to us via phone, email, or visit our office. We're committed to providing you with the best possible service and support.</p>
+                        </div>
+                        <div class="content">
+                            <!-- Info-1 -->
+                            <div class="info">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <h4 class="d-inline-block">PHONE :
+                                    <br>
+                                    <span>+977 9817136475</span></h3>
+                            </div>
+                            <!-- Info-2 -->
+                            <div class="info">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <h4 class="d-inline-block">EMAIL :
+                                    <br>
+                                    <span>indonepalmart@gmail.com</span></h4>
+                            </div>
+                            <!-- Info-3 -->
+                            <div class="info mb-5">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <h4 class="d-inline-block">ADDRESS :<br>
+                                    <span>New Road, Pokhara, Nepal</span></h4>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-md-7">
+    
+                        <form method="post" action="/contact">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input name="name" type="text" required class="form-control" placeholder="Name">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input name="phone" type="tel" required class="form-control" placeholder="Phone Number">
+                                </div>
+                                <div class="col-sm-12">
+                                    <input name="email" type="email" required class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" class="form-control" required rows="5" id="comment" placeholder="Message"></textarea>
+                            </div>
+                            <button class="btn btn-block" type="submit">Send Message!</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+    </div>
+
+{% endblock body %}

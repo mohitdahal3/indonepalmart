@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block orderActive %}class="active-page-link"{% endblock orderActive %}
+
+{% block title %} Order {% endblock title %}
+
+{% load static %}
+{% block css %}
+
+    <link rel="stylesheet" href=" {% static 'shop/css/order-style.css' %} ">
+
+{% endblock css %}
+
+
+{% block body %}
+
+    <div class="main-container bg-body-tertiary">
+        <div class="container py-5">
+            <h1 class="display-5 fw-bold mb-3">Place your Order!</h1>
+            <p class="fs-5 mb-4">Ready to place your order? Please fill out the form below with your contact information and product details to proceed with your order. After submitting the form, you'll be redirected to our WhatsApp to confirm your order and discuss any specifics about the product. If you prefer not to message, we'll give you a call to confirm your order after some time. Your convenience is our priority!</p>
+
+            <div class="order-wrapper my-1 py-4 px-4">
+                <form method="post" action="/order" class="order-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row my-2">
+                        <div class="col-md my-2">
+                            <input name="name" type="text" class="form-control" placeholder="Name" required>
+                        </div>
+                        <div class="col-md my-2">
+                            <input name="email" type="email" class="form-control" placeholder="Email (Optional)">
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col-md my-2">
+                            <input name="phone1" type="tel" class="form-control" placeholder="Phone Number" required>
+                        </div>
+                        <div class="col-md my-2">
+                            <input name="phone2" type="tel" class="form-control" placeholder="Secondary Phone Number (Optional)">
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col my-2">
+                            <input name="address" type="text" class="form-control" placeholder="Address" required>
+                        </div>
+                    </div>
+
+                    <div class="row my-2">
+                        <div class="col my-2">
+                            <input name="productName" type="text" class="form-control" placeholder="Product's name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row my-2">
+                        <div class="input-group my-2 col-md">
+                            <label class="input-group-text" for="image-input-1">Product's Picture</label>
+                            <input name="image" type="file" accept="image/*" class="form-control" id="image-input-1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row my-2">
+                        <div class="col my-2">
+                            <input name="url" type="text" class="form-control" placeholder="Product's URL" required>
+                        </div>
+                    </div>
+
+                    <div class="row my-1">
+                        <div class="col my-1">
+                            <button data-bs-toggle="tooltip" data-bs-title="Placing the order will also redirect you to our WhatsApp! Make sure to enable the pop-ups in your browser." class="btn btn-outline-success order-btn" type="submit">Order Now!</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        {% if order_number %}
+
+            var phoneNumber = "+9779817136475";  
+            var message = `I successfully ordered {{order_title}}. (Order number: ${ {{order_number}} })`;  
+
+            var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+
+            window.open(whatsappUrl, "_blank");
+
+        {% endif %}
+    </script>
+
+{% endblock body %}
+
+
+
+{% block js %}
+
+    <script src=" {% static 'shop/js/order-script.js' %} "></script>
+
+{% endblock js %}

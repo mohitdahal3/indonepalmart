@@ -1,0 +1,36 @@
+
+
+.tll{
+    text-align: left !important;
+}
+
+
+.product{
+    margin: 3em 0;
+    padding: 1.5em 1em;
+    border: 1px solid gray;
+    border-radius: 1em;
+    box-shadow: 0 0 25px -7px gray;
+}
+
+.product > div.row > div.col-md-4 > img{
+    width: 100%;
+    border-radius: 0.35em;
+}
+
+
+.searchbar{
+    margin: auto;
+    max-width: 15em;
+    font-size: 1.25em;
+    /* background-image: url("https://img.icons8.com/ios/50/search--v1.png"); */
+    background-image: url("../images/search-icon2.svg");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 9.5%;
+}
+
+.searchbar:focus{
+    box-shadow: none !important;
+    border-color: rgb(131, 131, 131) !important;
+}

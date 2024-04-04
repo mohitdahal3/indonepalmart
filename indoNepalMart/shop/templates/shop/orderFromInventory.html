@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %} Order from Inventory {% endblock title %}
+
+{% load static %}
+{% block css %}
+
+    <link rel="stylesheet" href=" {% static 'shop/css/order-style.css' %} ">
+    <style>
+        .tll{
+            text-align: left !important;
+        }
+        
+        
+        .product{
+            margin: 3em 0;
+            padding: 1.5em 1em;
+            border: 1px solid gray;
+            border-radius: 1em;
+            box-shadow: 0 0 25px -7px gray;
+        }
+        
+        .product > div.row > div.col-md-4 > img{
+            width: 100%;
+            border-radius: 0.35em;
+        }
+    </style>
+
+{% endblock css %}
+
+
+{% block body %}
+
+    <div class="main-container bg-body-tertiary">
+        <div class="container py-5">
+            <h1 class="display-5 fw-bold mb-3">Order From Our Inventory!</h1>
+            {% if product.stock > 0 %}
+                <div class="product mb-4" id="{{product.sno}}">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="/media/{{product.product_image}}">
+                        </div>
+                        <div class="col-md-8 tll">
+                            <h1 class="display-6 fw-medium tll mb-0 mt-2">{{product.product_name}}</h1>
+                            <p class="fs-4 fw-normal tll">(Category: {{product.category}})</p>
+                            <p class="tll fs-5">
+
+                                {% if product.product_description|length > 50 %}
+                                    {{ product.product_description|slice:":50" }}...
+                                {% else %}
+                                    {{ product.product_description }}
+                                {% endif %}
+
+                            </p>
+                            <p class="tll fs-4"> 
+                                <span class="badge text-bg-light">Available: {{product.stock}}</span>
+                                <span class="badge text-bg-light">Price: Rs.{{product.price}}</span>
+                            </p>
+                            <a href="/productview/{{product.sno}}" type="button" class="btn btn-success mx-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-wrapper my-1 py-4 px-4">
+                    <form method="post" action="/order-from-inventory/{{product.sno}}" class="order-form">
+                        {% csrf_token %}
+                        <div class="row my-2">
+                            <div class="col-md my-2">
+                                <input name="name" type="text" class="form-control" placeholder="Name" required>
+                            </div>
+                            <div class="col-md my-2">
+                                <input name="email" type="email" class="form-control" placeholder="Email (Optional)">
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <div class="col-md my-2">
+                                <input name="phone1" type="tel" class="form-control" placeholder="Phone Number" required>
+                            </div>
+                            <div class="col-md my-2">
+                                <input name="phone2" type="tel" class="form-control" placeholder="Secondary Phone Number (Optional)">
+                            </div>
+                        </div>
+
+                        <div class="row my-2">
+                            <div class="col my-2">
+                                <input name="address" type="text" class="form-control" placeholder="Address" required>
+                            </div>
+                        </div>
+
+                        <div class="row my-1">
+                            <div class="col my-1">
+                                <button data-bs-toggle="tooltip" data-bs-title="Placing the order will also redirect you to our WhatsApp! Make sure to enable the pop-ups in your browser." class="btn btn-outline-success order-btn" type="submit">Order Now!</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            {% else %}
+                <div class="alert alert-danger fs-4" role="alert">
+                    This Product is not available at the moment!
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        {% if order_number %}
+            var phoneNumber = "+9779817136475";  
+            var message = `I successfully ordered {{order_title}} from your inventory. (Order number: ${ {{order_number}} })`;  
+
+            var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+            window.open(whatsappUrl, "_blank");
+
+        {% endif %}
+    </script>
+
+{% endblock body %}
+
+
+
+{% block js %}
+
+    <script src=" {% static 'shop/js/order-script.js' %} "></script>
+
+{% endblock js %}
